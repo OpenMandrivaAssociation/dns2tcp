@@ -1,6 +1,6 @@
 %define name	dns2tcp
 %define version	0.4.3
-%define release	%mkrel 1
+%define release	%mkrel 2
 
 Name:		%{name}
 Version:	%{version}
@@ -82,7 +82,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc README COPYING ChangeLog
 %{_bindir}/dns2tcpd
 %{_initrddir}/dns2tcpd
-%{_sysconfdir}/dns2tcpd.conf
+%config(noreplace) %{_sysconfdir}/dns2tcpd.conf
 %{_mandir}/man1/dns2tcpd.1.*
 
 %files client
@@ -90,6 +90,6 @@ rm -rf $RPM_BUILD_ROOT
 %doc README COPYING ChangeLog
 %{_bindir}/dns2tcpc
 %{_initrddir}/dns2tcpc
-%{_sysconfdir}/dns2tcpc.conf
+%config(noreplace) %{_sysconfdir}/dns2tcpc.conf
 %{_mandir}/man1/dns2tcpc.1.*
 
