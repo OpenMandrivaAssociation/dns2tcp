@@ -14,6 +14,7 @@ Source1: 	dns2tcpd.init
 Source2: 	dns2tcpd.conf
 Source3: 	dns2tcpc.init
 Source4: 	dns2tcpc.conf
+Patch0:     dns2tcp-0.4.3-fix_strnlen.diff 
 BuildRoot:	%{_tmppath}/%{name}-root
 
 %description
@@ -48,7 +49,7 @@ This package contains the server part.
 
 %prep
 %setup -q 
-
+%patch0 -p0
 %build
 %configure
 %make
