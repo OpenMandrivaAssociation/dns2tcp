@@ -1,6 +1,6 @@
 %define name	dns2tcp
-%define version	0.4.3
-%define release	%mkrel 4
+%define version	0.5
+%define release	%mkrel 1
 
 Name:		%{name}
 Version:	%{version}
@@ -14,8 +14,7 @@ Source1: 	dns2tcpd.init
 Source2: 	dns2tcpd.conf
 Source3: 	dns2tcpc.init
 Source4: 	dns2tcpc.conf
-Patch0:     dns2tcp-0.4.3-fix_strnlen.diff 
-BuildRoot:	%{_tmppath}/%{name}-root
+BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
 Dns2tcp is a tool for relaying TCP connections over DNS. There is no
@@ -49,24 +48,24 @@ This package contains the server part.
 
 %prep
 %setup -q 
-%patch0 -p0
+
 %build
-%configure
+%configure2_5x
 %make
 
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 %makeinstall
-mkdir -p $RPM_BUILD_ROOT/%_initrddir/
-mkdir -p $RPM_BUILD_ROOT/%_sysconfdir/
-install -m 0755 %SOURCE1 $RPM_BUILD_ROOT/%_initrddir/dns2tcpd
-install -m 0755 %SOURCE2 $RPM_BUILD_ROOT/%_sysconfdir/dns2tcpd.conf
-install -m 0755 %SOURCE3 $RPM_BUILD_ROOT/%_initrddir/dns2tcpc
-install -m 0755 %SOURCE4 $RPM_BUILD_ROOT/%_sysconfdir/dns2tcpc.conf
+mkdir -p %{buildroot}/%_initrddir/
+mkdir -p %{buildroot}/%_sysconfdir/
+install -m 0755 %SOURCE1 %{buildroot}/%_initrddir/dns2tcpd
+install -m 0755 %SOURCE2 %{buildroot}/%_sysconfdir/dns2tcpd.conf
+install -m 0755 %SOURCE3 %{buildroot}/%_initrddir/dns2tcpc
+install -m 0755 %SOURCE4 %{buildroot}/%_sysconfdir/dns2tcpc.conf
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %post server
 %_post_service dns2tcpd
