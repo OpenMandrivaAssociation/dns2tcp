@@ -14,6 +14,7 @@ Source1: 	dns2tcpd.init
 Source2: 	dns2tcpd.conf
 Source3: 	dns2tcpc.init
 Source4: 	dns2tcpc.conf
+BuildRequires:  openssl-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
