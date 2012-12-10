@@ -1,0 +1,78 @@
+#! /bin/bash
+#
+# dns2tcp          Start/Stop the dns2tcp server
+#
+# chkconfig: 2345 90 60
+# description: Dns2tcp is a tool for relaying TCP connections over DNS
+# processname: dns2tcpd
+# config: /etc/dns2tcpd.conf
+#
+### BEGIN INIT INFO
+# Provides: dns2tcpd
+# Required-Start: $syslog $network
+# Required-Stop: $syslog
+# Default-Start: 2 3 4 5
+# Short-Description: Dns2tcp is a tool for relaying TCP connections over DNS
+# Description: Dns2tcp is a tool for relaying TCP connections over DNS. There is no
+#              authentications nor encryption mecanisms : DNS encapsulation must be
+#              considered as an unsecure and anonymous transport layer. Ressources should
+#              be public external services like ssh, ssltunnel ... 
+### END INIT INFO
+
+# Source function library.
+. /etc/init.d/functions
+
+RETVAL=0
+
+# See how we were called.
+  
+prog="dns2tcpd"
+
+start() {
+	gprintf "Starting %s: " "$prog"
+	dns2tcpd -f /etc/dns2tcpd.conf
+	RETVAL=$?
+	echo
+	[ $RETVAL -eq 0 ] && touch /var/lock/subsys/$prog
+	return $RETVAL
+}
+
+stop() {
+	gprintf "Stopping %s: " "$prog"
+	killproc $prog
+	RETVAL=$?
+	echo
+	[ $RETVAL -eq 0 ] && rm -f /var/lock/subsys/$prog
+	return $RETVAL
+}	
+
+restart() {
+  	stop
+	start
+}	
+
+case "$1" in
+  start)
+  	start
+	;;
+  stop)
+  	stop
+	;;
+  restart)
+  	restart
+	;;
+  reload)
+  	reload
+	;;
+  status)
+  	status $prog
+	;;
+  condrestart)
+  	[ -f /var/lock/subsys/$prog] && restart || :
+	;;
+  *)
+	gprintf "Usage: %s {start|stop|status|reload|restart|condrestart}\n" "$0"
+	exit 1
+esac
+
+exit $?

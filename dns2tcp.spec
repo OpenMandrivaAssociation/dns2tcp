@@ -94,3 +94,42 @@ rm -rf %{buildroot}
 %config(noreplace) %{_sysconfdir}/dns2tcpc.conf
 %{_mandir}/man1/dns2tcpc.1.*
 
+
+
+%changelog
+* Wed Jul 28 2010 Luis Daniel Lucio Quiroz <dlucio@mandriva.org> 0.5.2-1mdv2011.0
++ Revision: 562860
+- 0.5.2
+
+* Mon Apr 19 2010 Guillaume Rousse <guillomovitch@mandriva.org> 0.5-1mdv2010.1
++ Revision: 536812
+- new version
+
+* Sun Dec 20 2009 Michael Scherer <misc@mandriva.org> 0.4.3-4mdv2010.1
++ Revision: 480323
+- fix build, as glibc now declare strnlen, which conflict with some symbols
+- do not chroot to a inexistant directory
+
+* Fri Dec 26 2008 Pascal Terjan <pterjan@mandriva.org> 0.4.3-3mdv2009.1
++ Revision: 319531
+- Only change it for client, server already detach itself
+- Fix initscripts so that they don't block boot
+
+* Fri Nov 07 2008 Pascal Terjan <pterjan@mandriva.org> 0.4.3-2mdv2009.1
++ Revision: 300760
+- Tag config files as such
+
+* Fri Nov 07 2008 Pascal Terjan <pterjan@mandriva.org> 0.4.3-1mdv2009.1
++ Revision: 300720
+- Update to 0.4.3 (Security fix for SA32514)
+- Fix condrestart command in services
+- Fix status command in services
+
+* Sat Sep 06 2008 Pascal Terjan <pterjan@mandriva.org> 0.4.1-1mdv2009.1
++ Revision: 281898
+- import dns2tcp
+
+
+* Sat Sep  6 2008 Pascal Terjan <pterjan@mandriva.org> 0.4.1-1mdv2009.0
+- First version of the package
+

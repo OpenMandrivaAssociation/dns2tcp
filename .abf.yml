@@ -1,6 +1,2 @@
 sources:
-  "dns2tcp-0.5.2.tar.gz:"	b1de53800bbfda6d8c6f92e2844906b1b8a54af2
-  "dns2tcpc.conf:"	d72e720347dbee945e3c363bef1eed7fda4c1cf2
-  "dns2tcpc.init:"	77971f01c4c6e8b85fc1d6bedfad3c0d77eb14c6
-  "dns2tcpd.conf:"	9f87e9e1a1c7fe46eb4aa05182ffff3fe5f74c33
-  "dns2tcpd.init:"	a115972947650af79837f27afc5f382147e7dd5d
+  "dns2tcp-0.5.2.tar.gz": b1de53800bbfda6d8c6f92e2844906b1b8a54af2
