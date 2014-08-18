@@ -1,0 +1,10 @@
+[Unit]
+Description=Server tool for relaying TCP connections over DNS
+After=syslog.target network.target
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/dns2tcpd -f /etc/dns2tcpd.conf
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,10 @@
+[Unit]
+Description=Client tool for relaying TCP connections over DNS
+After=syslog.target network.target
+
+[Service]
+Type=forking
+ExecStart=/usr/bin/dns2tcpc -f /etc/dns2tcpc.conf
+
+[Install]
+WantedBy=multi-user.target 
