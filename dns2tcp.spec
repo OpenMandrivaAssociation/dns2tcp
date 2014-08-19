@@ -1,6 +1,6 @@
 Name:		dns2tcp
 Version:	0.5.2
-Release:	3
+Release:	4
 Summary:	Tunnel TCP over DNS
 Group:		Networking/Other
 License:	GPLv2+
