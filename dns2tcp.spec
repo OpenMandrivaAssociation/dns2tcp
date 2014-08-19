@@ -1,6 +1,6 @@
 Name:		dns2tcp
 Version:	0.5.2
-Release:	2
+Release:	3
 Summary:	Tunnel TCP over DNS
 Group:		Networking/Other
 License:	GPLv2+
@@ -71,45 +71,22 @@ install -D -m 0755 %{SOURCE4} %{buildroot}%{_sysconfdir}/dns2tcpc.conf
 %clean
 
 %post server
-if [ $1 -eq 1 ] ; then 
-    # Initial installation 
-    /bin/systemctl daemon-reload >/dev/null 2>&1 || :
-fi
+%systemd_post dns2tcpd.service
 
 %preun server
-if [ $1 -eq 0 ] ; then
-    # Package removal, not upgrade
-    /bin/systemctl --no-reload disable dns2tcpd.service > /dev/null 2>&1 || :
-    /bin/systemctl stop dns2tcpd.service > /dev/null 2>&1 || :
-fi
+%systemd_preun dns2tcpd.service
 
 %postun server
-/bin/systemctl daemon-reload >/dev/null 2>&1 || :
-if [ $1 -ge 1 ] ; then
-    # Package upgrade, not uninstall
-    /bin/systemctl try-restart dns2tcpd.service >/dev/null 2>&1 || :
-fi
-
+%systemd_postun_with_restart dns2tcpd.service
 
 %post client
-if [ $1 -eq 1 ] ; then 
-    # Initial installation 
-    /bin/systemctl daemon-reload >/dev/null 2>&1 || :
-fi
+%systemd_post dns2tcpc.service
 
 %preun client
-if [ $1 -eq 0 ] ; then
-    # Package removal, not upgrade
-    /bin/systemctl --no-reload disable dns2tcpc.service > /dev/null 2>&1 || :
-    /bin/systemctl stop dns2tcpc.service > /dev/null 2>&1 || :
-fi
+%systemd_preun dns2tcpc.service
 
 %postun client
-/bin/systemctl daemon-reload >/dev/null 2>&1 || :
-if [ $1 -ge 1 ] ; then
-    # Package upgrade, not uninstall
-    /bin/systemctl try-restart dns2tcpc.service >/dev/null 2>&1 || :
-fi
+%systemd_postun_with_restart dns2tcpc.service
 
 %files server
 %doc README COPYING ChangeLog
