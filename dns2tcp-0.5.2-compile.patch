@@ -1,0 +1,35 @@
+diff -up dns2tcp-0.5.2/client/client.c.omv~ dns2tcp-0.5.2/client/client.c
+--- dns2tcp-0.5.2/client/client.c.omv~	2024-01-01 23:52:31.058115068 +0100
++++ dns2tcp-0.5.2/client/client.c	2024-01-01 23:52:38.318186782 +0100
+@@ -51,6 +51,8 @@
+ #include "socket.h"
+ #include "select.h"
+ 
++int debug;
++
+ /**
+  * @brief disconnect client
+  * @param[in] conf configuration
+diff -up dns2tcp-0.5.2/common/includes/debug.h.omv~ dns2tcp-0.5.2/common/includes/debug.h
+--- dns2tcp-0.5.2/common/includes/debug.h.omv~	2024-01-01 23:52:14.341950010 +0100
++++ dns2tcp-0.5.2/common/includes/debug.h	2024-01-01 23:52:21.538021054 +0100
+@@ -24,7 +24,7 @@
+ #include <stdio.h>
+ #include <time.h>
+ 
+-int debug;
++extern int debug;
+ 
+ #ifndef _WIN32
+ #define DPRINTF(level, fmt, args...)  \
+diff -up dns2tcp-0.5.2/server/server.c.omv~ dns2tcp-0.5.2/server/server.c
+--- dns2tcp-0.5.2/server/server.c.omv~	2024-01-01 23:52:40.866211955 +0100
++++ dns2tcp-0.5.2/server/server.c	2024-01-01 23:52:46.294265588 +0100
+@@ -33,6 +33,7 @@
+ #include "debug.h"
+ #include "log.h"
+ 
++int debug;
+ 
+ #define SOCKET_TIMEOUT	0 /* 1s */
+ #define SOCKET_UTIMEOUT	500000 /* 1s */
